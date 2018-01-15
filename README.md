@@ -96,7 +96,8 @@ Previewer:
 at which point the executable can be moved to the user's preferred location.
 
 Alternatively, the `development` directory has a crude `build.sh` script that
-will automate building on the command line (currently only setup for OS X).
+will automate building on the command line (currently only setup for macOS with
+a non-standard Homebrew configuration).
 
 ## Notes regarding Building
 
