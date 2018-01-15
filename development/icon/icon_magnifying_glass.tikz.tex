@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage[graphics, active, tightpage]{preview}
+\usepackage{lipsum}
+\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{calc,fadings,scopes}
+
+\definecolor{pagecolor}{HTML}{f9f0e7}
+
+\makeatletter
+\pgfdeclareradialshading[tikz@ball]{ring}{\pgfpoint{0cm}{0cm}}%
+{
+  rgb(0.00cm)=(1.0,1.0,1.0);
+  rgb(0.70cm)=(1.0,1.0,1.0);
+  rgb(0.80cm)=(0.8,0.8,0.8);
+  rgb(0.80cm)=(0.3,0.3,0.3);
+  rgb(0.85cm)=(1.0,1.0,1.0);
+  rgb(0.90cm)=(0.3,0.3,0.3)
+}
+
+\pgfdeclareradialshading{glassfading}{\pgfpointorigin}
+{
+  color(0.00cm)=(pgftransparent!100);
+  color(0.70cm)=(pgftransparent!100);
+  color(0.80cm)=(pgftransparent!025);
+  color(0.80cm)=(pgftransparent!000);
+  color(0.85cm)=(pgftransparent!000);
+  color(0.90cm)=(pgftransparent!000)
+}
+
+\pgfdeclareverticalshading{lightmetal}{2cm}%
+{
+  rgb(0.0cm)=(0.6,0.6,0.6);
+  rgb(1.5cm)=(1.0,1.0,1.0);
+  rgb(2.0cm)=(0.6,0.6,0.6)
+}
+
+\pgfdeclareverticalshading{darkmetal}{2.0cm}%
+{
+  rgb(0.0cm)=(0.4,0.4,0.4);
+  rgb(0.7cm)=(0.1,0.1,0.1);
+  rgb(1.5cm)=(0.4,0.4,0.4);
+  rgb(2.0cm)=(0.4,0.4,0.4)
+}
+
+\pgfdeclarefading{glassfade}{\pgfuseshading{glassfading}}
+\makeatother
+
+\begin{document}
+\begin{tikzpicture}
+
+  \def\rotangle{-45}
+
+  \def\magIR{3.63}
+  \def\magOR{4.00}
+
+  \coordinate (textnodeloc) at (-4.4,4.5);
+  \coordinate (lowerleft) at (-4.5,-6.0);
+  \coordinate (upperright) at ( 6.0, 4.5);
+
+  \begin{scope}
+
+    % Draw background.
+    \clip[rounded corners=1.8cm] (lowerleft) rectangle (upperright);
+    \fill[pagecolor] (lowerleft) rectangle (upperright);
+    \node [
+      gray,
+      text width = 10.2cm,
+      align = justify,
+      below right,
+      scale = 0.99] at (textnodeloc) {\lipsum[1-3]};
+
+    % Draw magnifying glass contents.
+    \fill[pagecolor] (0,0) circle (\magIR);
+    \node [align=center, scale=9.5, yshift=0] (0,0) {TikZ};
+
+    % Draw magnifying glass.
+    \fill[shading=ring, path fading=glassfade] (0,0) circle (\magOR);
+    \draw[thick] (0,0) circle (\magIR);
+    \draw (0,0) circle (\magOR);
+
+    % Draw darkmetal.
+    \begin{scope}[rotate=\rotangle]
+      \def\attachmentIR{0.10}
+      \def\attachmentOR{4.20}
+
+      \fill[ shading = lightmetal,
+        shading angle=\rotangle ] (4.1,-0.5) rectangle ++(0.5,1.0);
+
+      \fill[shading=darkmetal]
+        (\magOR,0) arc (0:15:\magOR)
+        -- ++(0,0) arc (195:15:\attachmentIR)
+        -- ++(0,0) arc (15:-15:\attachmentOR)
+        -- ++(0,0) arc (345:165:\attachmentIR)
+        -- ++(0,0) arc (-15:0:\magOR) -- cycle;
+
+      \fill[ shading = lightmetal,
+      shading angle=\rotangle,
+      rounded corners=15pt ] (6.30,-0.8) rectangle ++(1,1.6);
+
+      \fill[ shading = darkmetal,
+      shading angle=\rotangle] (4.6,-0.75) rectangle ++(2.0,1.5);
+
+    \end{scope}
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}
