@@ -717,8 +717,10 @@ bool TikzPreviewer::FirstRun() {
     // Attempt to make configuration directory because it doesn't exist.  If it
     // fails to be made, then return false and, eventually, exit the program.
     if ( !QDir().mkdir( config_directory ) ) {
-      std::cout
-        << tr( "Failed to make configuration directory.\n" ).toStdString();
+      msg = tr("Failed to make configuration directory.");
+      std::cout << msg.toStdString() << std::endl;
+      QMessageBox::critical( this, QGuiApplication::applicationDisplayName(),
+                             msg );
       return false;
     }
     // Create default configuration file.
@@ -734,11 +736,13 @@ bool TikzPreviewer::FirstRun() {
   }
   if ( !QDir( working_directory ).exists() ) {
     if ( !QDir().mkdir( working_directory ) ) {
-      std::cout << tr( "Failed to make working directory.\n" ).toStdString();
+      msg = tr( "Failed to make working directory." );
+      std::cout << msg.toStdString() << std::endl;
+      QMessageBox::critical( this, QGuiApplication::applicationDisplayName(),
+                             msg );
       return false;
     }
   }
-
   return true;
 }
 
