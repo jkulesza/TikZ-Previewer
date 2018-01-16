@@ -50,12 +50,6 @@ int main( int argc, char *argv[] ) {
     return -1;
   }
 
-  // Support pinch-to-zoom gesture (panning already supported by the scroll area
-  // around the image label).
-  //  QList<Qt::GestureType> gestures;
-  //  gestures << Qt::PinchGesture;
-  //  w.GetGestures(gestures);
-
   w.show();
 
   return a.exec();

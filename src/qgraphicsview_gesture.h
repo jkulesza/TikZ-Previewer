@@ -40,7 +40,6 @@ class QGraphicsViewGesture : public QGraphicsView {
   void Zoom( const double &frac_zoom_change );
 
  protected:
-  // bool viewportEvent( QEvent *event ) override;
   bool event( QEvent *event ) override;
 
  signals:

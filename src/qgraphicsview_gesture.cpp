@@ -83,7 +83,6 @@ void QGraphicsViewGesture::PinchTriggered( QPinchGesture *gesture ) {
   QPinchGesture::ChangeFlags changeFlags = gesture->changeFlags();
   if ( changeFlags & QPinchGesture::ScaleFactorChanged && this->isEnabled() ) {
     zoom_factor_step = gesture->totalScaleFactor();
-    // qDebug() << "step: " << zoom_factor_step;
     // Ensure that the user doesn't blow out the zoom.
     if ( zoom_factor * zoom_factor_step > 0.25 &&
          zoom_factor * zoom_factor_step < 4.0 ) {
@@ -94,7 +93,6 @@ void QGraphicsViewGesture::PinchTriggered( QPinchGesture *gesture ) {
   // Update overall zoom factor.
   if ( gesture->state() == Qt::GestureFinished ) {
     zoom_factor_step = 1;
-    // qDebug() << "zoom_factor: " << zoom_factor;
   }
 
   update();

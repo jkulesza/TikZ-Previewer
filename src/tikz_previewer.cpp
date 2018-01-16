@@ -77,9 +77,9 @@ TikzPreviewer::~TikzPreviewer() {
 bool TikzPreviewer::LoadFile( const QString &infilename ) {
   fileinfo_input = QFileInfo( infilename );
 
-  // Assume that the absolute filepath is given and, thus, the file should exist
+  // Assume that the absolute file path is given and, thus, the file should exist
   // (e.g., corresponding to a call from ActionOpenFile). If not, try
-  // pre-pending the current directory which woudl likely occur if called from
+  // pre-pending the current directory which would likely occur if called from
   // the command line.
   if ( !fileinfo_input.exists() ) {
     // Assume only the file name was given with the current path assumed so the
@@ -108,7 +108,7 @@ bool TikzPreviewer::LoadFile( const QString &infilename ) {
   ui->status_bar->showMessage( msg );
   ui->status_bar->repaint();
 
-  // Setup filesystem watcher to see if/when source file changes to trigger
+  // Setup file system watcher to see if/when source file changes to trigger
   // refreshes.
   filesystem_watcher = new QFileSystemWatcher( this );
   filesystem_watcher->addPath( fileinfo_input.absoluteFilePath() );
@@ -183,7 +183,7 @@ void TikzPreviewer::ActionOpenFile() {
   // Attempt to open from the last directory that a file was opened from.  If
   // that directory doesn't exist, then try to use the user's home location.  If
   // that doesn't work, then use the current working directory (likely, the
-  // exectuable's dirctory).
+  // executable's directory).
   QDir openfilepath = preferences->GetLastPath();
   logger->write(
     tr( "Last path used: \"%1\"." ).arg( openfilepath.absolutePath() ) );
@@ -237,7 +237,7 @@ void TikzPreviewer::ActionSavePdf() {
 }
 
 bool TikzPreviewer::ActionSaveImage() {
-  // Determine supported image filetypes.
+  // Determine supported image file types.
   QStringList mimeTypeFilters;
   const QByteArrayList supportedMimeTypes = QImageWriter::supportedMimeTypes();
   foreach ( const QByteArray &mimeTypeName, supportedMimeTypes )
@@ -403,7 +403,7 @@ void TikzPreviewer::ShowImageContextMenu( const QPoint &pos ) {
 void TikzPreviewer::SourceFileChanged() {
   // Change to a transient waiting color.  However, this is not done because
   // most renders happen so fast a flicker is observed that seems out of place.
-  // ui->label_output_image->setStyleSheet( label_style_wait );
+  // ui->gv_output_image->setStyleSheet( gv_style_wait );
   ExecuteCopyAndRender();
   return;
 }
