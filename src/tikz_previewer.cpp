@@ -788,9 +788,10 @@ void TikzPreviewer::ToggleWidgets( const bool &widget_state_enabled ) {
   act_copy_pixmap->setEnabled( widget_state_enabled );
 
   act_refresh->setEnabled( widget_state_enabled );
+  act_zoom_actual->setEnabled( widget_state_enabled );
+  act_zoom_fit->setEnabled( widget_state_enabled );
   act_zoom_in->setEnabled( widget_state_enabled );
   act_zoom_out->setEnabled( widget_state_enabled );
-  act_zoom_fit->setEnabled( widget_state_enabled );
 
   return;
 }
