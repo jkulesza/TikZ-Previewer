@@ -5,9 +5,6 @@
 # regenerating the icon(s) and reassessing (via qmake) the list of code
 # contributors based on the git log entries.
 
-# Rebuild icon.
-cd icon && ./make_icon.sh && cd ..
-
 # Build application.
 if [ -d ../build ]; then rm -rf ../build; fi
 mkdir ../build && cd ../build
