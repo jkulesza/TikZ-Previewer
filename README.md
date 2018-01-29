@@ -1,7 +1,7 @@
 ***
 
 Having "discovered" `latexmk -pvc -pdf`, it is unlikely that continued
-development ont his will continue.
+development on this will continue.
 
 ***
 
