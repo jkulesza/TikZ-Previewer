@@ -1,5 +1,12 @@
 ***
 
+Having "discovered" `latexmk -pvc -pdf`, it is unlikely that continued
+development ont his will continue.
+
+***
+
+***
+
 **Caution: this is pre-release software.**
 
 **This software is not stable and not recommended for production use.  It is assumed that the user is willing to build the software, which may include modifying some configuration files before building and manually editing configuration files after building.**
